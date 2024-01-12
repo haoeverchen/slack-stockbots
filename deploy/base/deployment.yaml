@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: slack-stockbots
+  namespace: tzuhao-project1-main
+spec:
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: slack-stockbots
+      image: aha86tw/slack-stockbots:latest
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8080
+          name: stockbots-svc
+      env:
+        - name: CHANNEL
+          valueFrom:
+            secretKeyRef:
+              name: stockbots-key
+              key: channel
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: stockbots-key
+              key: alphavantage
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: stockbots-key
+              key: howhowone
