@@ -17,7 +17,7 @@ public class ScheduleRunner {
         LoggerFactory.getLogger(ScheduleRunner.class);
 
 
-    // cron expression
+    /* cron expression */
     @Scheduled(cron = "* * * * * ?")
 //    @Scheduled(fixedRate = 3000)
     public void NotifyStockPrice() throws IOException {

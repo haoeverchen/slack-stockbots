@@ -61,7 +61,7 @@ public class StockPriceQueryController {
             10000);
         ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setReadTimeout(
             10000);
-        String API_KEY = env.getProperty("API_KEY");
+        String API_KEY = env.getProperty("API_KEY", "demo");
         String url =
             "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey=" + API_KEY;
 
@@ -95,6 +95,6 @@ public class StockPriceQueryController {
                     section -> section.text(markdownText(
                         "*" + lastDate + " " + stock + "* :sammy:\r" + sb.toString()))),
                 divider())));
-        return "";
+        return "Message Posted to Slack";
     }
 }
