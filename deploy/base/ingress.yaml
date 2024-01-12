@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: slack-stockbots-ingress
+  namespace: tzuhao-project1-main
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+spec:
+  rules:
+    - host: discovery.cs.vt.edu
+      http:
+        paths:
+          - backend:
+              serviceName: slack-stockbots
+              servicePort: stockbots-svc
+            path: /slack-stockbots(/|$)(.*)
